@@ -22,7 +22,9 @@ class SongDataMapperTest {
             name,
             link,
             duration,
-            NetworkSong.NetworkMetadata(creationDate, uploadDate, authorFullName)
+            creationDate,
+            uploadDate,
+            authorFullName
         )
     }
 

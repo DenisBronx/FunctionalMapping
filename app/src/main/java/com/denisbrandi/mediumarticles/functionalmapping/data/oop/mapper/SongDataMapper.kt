@@ -13,13 +13,11 @@ class SongDataMapper : Mapper<NetworkSong, Song> {
             input.name.orEmpty(),
             input.link.orEmpty(),
             input.duration ?: 0,
-            input.metadata?.let {
-                Song.Metadata(
-                    formatDate(it.creationDate),
-                    formatDate(it.uploadDate),
-                    it.authorFullName.orEmpty()
-                )
-            } ?: Song.Metadata(0, 0, "")
+            Song.Metadata(
+                formatDate(input.creationDate),
+                formatDate(input.uploadDate),
+                input.authorFullName.orEmpty()
+            )
         )
     }
 

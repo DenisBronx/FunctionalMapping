@@ -20,7 +20,9 @@ class SongDataMapperKtTest {
             name,
             link,
             duration,
-            NetworkSong.NetworkMetadata(creationDate, uploadDate, authorFullName)
+            creationDate,
+            uploadDate,
+            authorFullName
         )
     }
 

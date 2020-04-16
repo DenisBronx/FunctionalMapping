@@ -4,19 +4,17 @@ import com.denisbrandi.mediumarticles.functionalmapping.data.network.model.Netwo
 import com.denisbrandi.mediumarticles.functionalmapping.domain.model.Song
 import java.text.SimpleDateFormat
 
-fun mapSongDto(input: NetworkSong, formatDate: (String?) -> Long = { formatAlbumDate(it) }): Song {
+fun mapSongDto(input: NetworkSong): Song {
     return Song(
         input.id.orEmpty(),
         input.name.orEmpty(),
         input.link.orEmpty(),
         input.duration ?: 0,
-        input.metadata?.let {
-            Song.Metadata(
-                formatDate(it.creationDate),
-                formatDate(it.uploadDate),
-                it.authorFullName.orEmpty()
-            )
-        } ?: Song.Metadata(0, 0, "")
+        Song.Metadata(
+            formatAlbumDate(input.creationDate),
+            formatAlbumDate(input.uploadDate),
+            input.authorFullName.orEmpty()
+        )
     )
 }
 

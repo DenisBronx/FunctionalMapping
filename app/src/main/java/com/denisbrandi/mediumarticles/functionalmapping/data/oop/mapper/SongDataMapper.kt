@@ -23,7 +23,7 @@ class SongDataMapper : Mapper<NetworkSong, Song> {
 
     private fun formatDate(date: String?): Long {
         return date?.let {
-            SimpleDateFormat(DATE_FORMAT_PATTERN, Locale.getDefault()).parse(it).time
+            SimpleDateFormat(DATE_FORMAT_PATTERN, Locale.UK).parse(it).time
         } ?: Long.MIN_VALUE
     }
 

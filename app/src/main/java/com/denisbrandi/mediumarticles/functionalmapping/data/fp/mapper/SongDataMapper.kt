@@ -3,6 +3,7 @@ package com.denisbrandi.mediumarticles.functionalmapping.data.fp.mapper
 import com.denisbrandi.mediumarticles.functionalmapping.data.network.model.NetworkSong
 import com.denisbrandi.mediumarticles.functionalmapping.domain.model.Song
 import java.text.SimpleDateFormat
+import java.util.*
 
 fun mapSongDto(input: NetworkSong): Song {
     return Song(
@@ -20,6 +21,6 @@ fun mapSongDto(input: NetworkSong): Song {
 
 private fun formatAlbumDate(date: String?): Long {
     return date?.let {
-        SimpleDateFormat("dd MMMM yyyy HH:mm:ss").parse(it).time
+        SimpleDateFormat("dd MMMM yyyy HH:mm:ss", Locale.UK).parse(it).time
     } ?: Long.MIN_VALUE
 }

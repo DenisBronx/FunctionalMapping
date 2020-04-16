@@ -12,19 +12,19 @@ class ListMappersKtTest {
     private val output2: Any = mock()
 
     private val inputOutputMap = mapOf(input1 to output1, input2 to output2)
-    private val mapSingle: (Any) -> Any = { input -> inputOutputMap.getValue(input) }
+    private val mapListItem: (Any) -> Any = { input -> inputOutputMap.getValue(input) }
 
     //region mapList
     @Test
     fun `mapList should return empty list when input list is empty`() {
-        val actual = mapList(emptyList(), mapSingle)
+        val actual = mapList(emptyList(), mapListItem)
 
         assertThat(actual).isEmpty()
     }
 
     @Test
     fun `mapList should return mapped list when input list is 1`() {
-        val actual = mapList(listOf(input1), mapSingle)
+        val actual = mapList(listOf(input1), mapListItem)
 
         assertThat(actual.size).isEqualTo(1)
         assertThat(actual[0]).isEqualTo(output1)
@@ -32,7 +32,7 @@ class ListMappersKtTest {
 
     @Test
     fun `mapList should return mapped list when input list is many`() {
-        val actual = mapList(listOf(input1, input2), mapSingle)
+        val actual = mapList(listOf(input1, input2), mapListItem)
 
         assertThat(actual.size).isEqualTo(2)
         assertThat(actual[0]).isEqualTo(output1)
@@ -43,21 +43,21 @@ class ListMappersKtTest {
     //region mapNullInputList
     @Test
     fun `mapNullInputList should return empty list when input list is null`() {
-        val actual = mapNullInputList(null, mapSingle)
+        val actual = mapNullInputList(null, mapListItem)
 
         assertThat(actual).isEmpty()
     }
 
     @Test
     fun `mapNullInputList should return empty list when input list is empty`() {
-        val actual = mapNullInputList(emptyList(), mapSingle)
+        val actual = mapNullInputList(emptyList(), mapListItem)
 
         assertThat(actual).isEmpty()
     }
 
     @Test
     fun `mapNullInputList should return mapped list when input list is 1`() {
-        val actual = mapNullInputList(listOf(input1), mapSingle)
+        val actual = mapNullInputList(listOf(input1), mapListItem)
 
         assertThat(actual.size).isEqualTo(1)
         assertThat(actual[0]).isEqualTo(output1)
@@ -65,7 +65,7 @@ class ListMappersKtTest {
 
     @Test
     fun `mapNullInputList should return mapped list when input list is many`() {
-        val actual = mapNullInputList(listOf(input1, input2), mapSingle)
+        val actual = mapNullInputList(listOf(input1, input2), mapListItem)
 
         assertThat(actual.size).isEqualTo(2)
         assertThat(actual[0]).isEqualTo(output1)
@@ -76,14 +76,14 @@ class ListMappersKtTest {
     //region mapNullOutputList
     @Test
     fun `mapNullOutputList should return empty list when input list is empty`() {
-        val actual = mapNullOutputList(emptyList(), mapSingle)
+        val actual = mapNullOutputList(emptyList(), mapListItem)
 
         assertThat(actual).isNull()
     }
 
     @Test
     fun `mapNullOutputList should return mapped list when input list is 1`() {
-        val actual = mapNullOutputList(listOf(input1), mapSingle)
+        val actual = mapNullOutputList(listOf(input1), mapListItem)
 
         assertThat(actual!!.size).isEqualTo(1)
         assertThat(actual[0]).isEqualTo(output1)
@@ -91,7 +91,7 @@ class ListMappersKtTest {
 
     @Test
     fun `mapNullOutputList should return mapped list when input list is many`() {
-        val actual = mapNullOutputList(listOf(input1, input2), mapSingle)
+        val actual = mapNullOutputList(listOf(input1, input2), mapListItem)
 
         assertThat(actual!!.size).isEqualTo(2)
         assertThat(actual[0]).isEqualTo(output1)
